@@ -358,8 +358,6 @@ async def test_run_workflow_template_with_null_labels():
                 "ansible_rulebook.action.run_workflow_template."
                 "lang.assert_fact"
             ):
-                await RunWorkflowTemplate(
-                    metadata, control, **action_args
-                )()
+                await RunWorkflowTemplate(metadata, control, **action_args)()
 
         _validate(queue, True)

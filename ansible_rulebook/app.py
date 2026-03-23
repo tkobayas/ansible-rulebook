@@ -294,11 +294,7 @@ def _get_feedback_queue(
     source_feedback_queues: Dict[str, asyncio.Queue],
 ) -> Optional[asyncio.Queue]:
     feedback_queue = None
-    if (
-        settings.persistence_enabled
-        and source.source_args
-        and source.source_args.get("feedback", False)
-    ):
+    if source.source_args and source.source_args.get("feedback", False):
         if (
             source.name in source_feedback_queues
             or source.name in source_names
