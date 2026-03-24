@@ -206,8 +206,8 @@ async def run_process_lifecycle(
     proc = await asyncio.create_subprocess_shell(
         str(cmd),
         cwd=utils.BASE_DATA_PATH,
-        #stdout=asyncio.subprocess.PIPE,
-        #stderr=asyncio.subprocess.PIPE,
+        # stdout=asyncio.subprocess.PIPE,
+        # stderr=asyncio.subprocess.PIPE,
     )
 
     if not is_final_run:
@@ -514,7 +514,7 @@ async def process_queue_messages(
     }
 
 
-#@pytest.mark.skip(reason="Fails in CI: H2 marks DB as locked during restarts")
+# @pytest.mark.skip(reason="Fails in CI: H2 marks DB as locked during restarts")
 @pytest.mark.e2e
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
