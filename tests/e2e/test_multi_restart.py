@@ -203,8 +203,8 @@ async def run_process_lifecycle(
     """
     LOGGER.info(f"Running command: {cmd}")
 
-    proc = await asyncio.create_subprocess_shell(
-        str(cmd),
+    proc = await asyncio.create_subprocess_exec(
+        *cmd.to_list(),
         cwd=utils.BASE_DATA_PATH,
         # stdout=asyncio.subprocess.PIPE,
         # stderr=asyncio.subprocess.PIPE,
