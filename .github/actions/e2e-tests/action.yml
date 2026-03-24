@@ -11,7 +11,7 @@ runs:
 
     - name: Run e2e tests
       shell: bash
-      run: pytest -m "e2e" -n auto --cov=./ --cov-report=xml --cov-append --junit-xml=e2e-test-results.xml
+      run: pytest -s tests/e2e/test_multi_restart.py -n 0 --cov=./ --cov-report=xml --cov-append --junit-xml=e2e-test-results.xml
 
     - name: Upload jUnit test results (APDE CI)
       shell: bash

@@ -206,8 +206,8 @@ async def run_process_lifecycle(
     proc = await asyncio.create_subprocess_shell(
         str(cmd),
         cwd=utils.BASE_DATA_PATH,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
+        #stdout=asyncio.subprocess.PIPE,
+        #stderr=asyncio.subprocess.PIPE,
     )
 
     if not is_final_run:
@@ -549,6 +549,7 @@ async def test_multi_restart_rulebook(
             heartbeat=2,
             vars_file=vars_file,
             persistence_id=str(uuid.uuid4()),
+            debug=True,
         )
 
         # Initialize tracking statistics
