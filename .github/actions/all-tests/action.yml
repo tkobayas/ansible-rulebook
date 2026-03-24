@@ -9,16 +9,16 @@ runs:
       run: |
         echo "GIT_SHA=$(git rev-parse "$GITHUB_SHA")" >> "$GITHUB_ENV"
 
-    # - name: Common tests
-    #   env:
-    #     PDE_ORG_RESULTS_AGGREGATOR_UPLOAD_USER: ${{ env.PDE_ORG_RESULTS_AGGREGATOR_UPLOAD_USER }}
-    #     PDE_ORG_RESULTS_UPLOAD_PASSWORD: ${{ env.PDE_ORG_RESULTS_UPLOAD_PASSWORD }}
-    #     PDE_ORG_RESULTS_AGGREGATOR_UPLOAD_URL: ${{ env.PDE_ORG_RESULTS_AGGREGATOR_UPLOAD_URL }}
-    #   uses: ./.github/actions/common-tests
+    - name: Common tests
+      env:
+        PDE_ORG_RESULTS_AGGREGATOR_UPLOAD_USER: ${{ env.PDE_ORG_RESULTS_AGGREGATOR_UPLOAD_USER }}
+        PDE_ORG_RESULTS_UPLOAD_PASSWORD: ${{ env.PDE_ORG_RESULTS_UPLOAD_PASSWORD }}
+        PDE_ORG_RESULTS_AGGREGATOR_UPLOAD_URL: ${{ env.PDE_ORG_RESULTS_AGGREGATOR_UPLOAD_URL }}
+      uses: ./.github/actions/common-tests
 
-    # - name: Long-running tests
-    #   shell: bash
-    #   run: pytest -m "long_run" -vv -n auto --cov=./ --cov-report=xml --cov-append --junit-xml=long-running-test-results.xml
+    - name: Long-running tests
+      shell: bash
+      run: pytest -m "long_run" -vv -n auto --cov=./ --cov-report=xml --cov-append --junit-xml=long-running-test-results.xml
 
     - name: Upload jUnit test results (APDE CI)
       shell: bash
