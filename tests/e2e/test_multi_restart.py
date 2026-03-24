@@ -514,7 +514,7 @@ async def process_queue_messages(
     }
 
 
-@pytest.mark.skip(reason="Fails in CI: H2 marks DB as locked during restarts")
+#@pytest.mark.skip(reason="Fails in CI: H2 marks DB as locked during restarts")
 @pytest.mark.e2e
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
