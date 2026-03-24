@@ -203,12 +203,28 @@ async def run_process_lifecycle(
     """
     LOGGER.info(f"Running command: {cmd}")
 
-    proc = await asyncio.create_subprocess_exec(
-        *cmd.to_list(),
-        cwd=utils.BASE_DATA_PATH,
+    proc = await asyncio.create_subprocess_shell(
+            str(cmd),
+            cwd=utils.BASE_DATA_PATH,
         # stdout=asyncio.subprocess.PIPE,
         # stderr=asyncio.subprocess.PIPE,
     )
+
+    # proc = await asyncio.create_subprocess_exec(
+    #     *cmd.to_list(),
+    #     cwd=utils.BASE_DATA_PATH,
+    #     # stdout=asyncio.subprocess.PIPE,
+    #     # stderr=asyncio.subprocess.PIPE,
+    # )
+
+    LOGGER.info(f"Process PID: {proc.pid}")
+    ps_proc = await asyncio.create_subprocess_shell(
+        f"ps -ef | grep {proc.pid}",
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    ps_stdout, _ = await ps_proc.communicate()
+    LOGGER.info(f"Process tree:\n{ps_stdout.decode()}")
 
     if not is_final_run:
         await asyncio.sleep(RESTART_INTERVAL)
